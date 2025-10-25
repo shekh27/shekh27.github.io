@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Name - Portfolio</title>
+  <style>
+   /* RESET & BASE STYLES */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #0a0a0a;
+  color: #e0e0e0;
+  line-height: 1.6;
+}
+
+/* Smooth scrolling when clicking navigation links */
+html {
+  scroll-behavior: smooth;
+}
+
+/* NAVIGATION BAR - Fixed at top */
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: rgba(15, 15, 15, 0.95);
+  backdrop-filter: blur(10px);
+  padding: 1rem 0;
+  z-index: 1000;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+.nav-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 2rem;
+}
+
+.nav-logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #00d9ff;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.nav-logo:hover {
+  color: #00b8d4;
+}
+
+.nav-menu {
+  display: flex;
+  list-style: none;
+  gap: 2rem;
+}
+
+.nav-menu a {
+  color: #e0e0e0;
+  text-decoration: none;
+  font-size: 1rem;
+  transition: color 0.3s;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+}
+
+.nav-menu a:hover {
+  color: #00d9ff;
+  background-color: rgba(0, 217, 255, 0.1);
+}
+
+/* HERO SECTION - Full viewport height with background */
+.hero {
+  height: 100vh;
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  /* REPLACE BACKGROUND: To add your own image, replace the line above with:
+     background: url('YOUR-IMAGE-URL-HERE') center/cover no-repeat;
+     You can upload images to imgur.com or use Unsplash URLs */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.hero-overlay {
+  background-color: rgba(0, 0, 0, 0.6);
+  padding: 3rem 2rem;
+  border-radius: 10px;
+  text-align: center;
+  backdrop-filter: blur(5px);
+}
+
+.hero h1 {
+  font-size: 4rem;
+  color: #00d9ff;
+  margin-bottom: 1rem;
+  text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.7);
+}
+
+.hero p {
+  font-size: 1.8rem;
+  color: #e0e0e0;
+  text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.7);
+}
+
+/* CONTAINER - Centers content with max width */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 4rem 2rem;
+}
+
+/* SECTION HEADINGS */
+h2 {
+  font-size: 2.5rem;
+  color: #00d9ff;
+  margin-bottom: 2rem;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+h3 {
+  font-size: 1.5rem;
+  color: #00b8d4;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+/* ABOUT SECTION */
+.about {
+  background-color: #0f0f0f;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+}
+
+.about-content {
+  background-color: #1a1a1a;
+  padding: 2rem;
+  border-radius: 10px;
+  border-left: 4px solid #00d9ff;
+}
+
+.about-content p {
+  font-size: 1.1rem;
+  color: #b0b0b0;
+  margin-bottom: 1.5rem;
+  line-height: 1.8;
+}
+
+/* PROJECTS SECTION */
+.projects {
+  background-color: #0a0a0a;
+  min-height: 100vh;
+  padding: 6rem 0;
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.project-card {
+  background-color: #1a1a1a;
+  padding: 2rem;
+  border-radius: 10px;
+  border: 1px solid #2a2a2a;
+  transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+  cursor: pointer;
+}
+
+.project-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 10px 30px rgba(0, 217, 255, 0.3);
+  border-color: #00d9ff;
+}
+
+.project-card h3 {
+  color: #00d9ff;
+  margin-top: 0;
+  font-size: 1.5rem;
+}
+
+.project-card p {
+  color: #b0b0b0;
+  margin: 1rem 0;
+  line-height: 1.6;
+}
+
+.btn-details {
+  background-color: #00d9ff;
+  color: #0a0a0a;
+  border: none;
+  padding: 0.8rem 1.5rem;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: bold;
+  transition: background-color 0.3s, transform 0.2s;
+  width: 100%;
+  margin-top: 1rem;
+}
+
+.btn-details:hover {
+  background-color: #00b8d4;
+  transform: scale(1.05);
+}
+
+/* CONTACT SECTION */
+.contact {
+  background-color: #0f0f0f;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+}
+
+.contact-info {
+  background-color: #1a1a1a;
+  padding: 2rem;
+  border-radius: 10px;
+  border-left: 4px solid #00d9ff;
+}
+
+.contact-info h3 {
+  color: #00d9ff;
+  margin-top: 2rem;
+}
+
+.contact-info h3:first-child {
+  margin-top: 0;
+}
+
+.contact-info p {
+  margin: 0.5rem 0;
+}
+
+.contact-info a {
+  color: #00d9ff;
+  text-decoration: none;
+  font-size: 1.1rem;
+  transition: color 0.3s;
+}
+
+.contact-info a:hover {
+  color: #00b8d4;
+  text-decoration: underline;
+}
+
+/* MODAL POP-UPS */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 2000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.9);
+  overflow: auto;
+}
+
+.modal-content {
+  background-color: #1a1a1a;
+  margin: 5% auto;
+  padding: 3rem;
+  border: 2px solid #00d9ff;
+  border-radius: 10px;
+  width: 80%;
+  max-width: 800px;
+  position: relative;
+  animation: slideDown 0.3s;
+}
+
+@keyframes slideDown {
+  from {
+    transform: translateY(-50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.close {
+  color: #00d9ff;
+  float: right;
+  font-size: 2.5rem;
+  font-weight: bold;
+  cursor: pointer;
+  line-height: 1;
+  transition: color 0.3s;
+}
+
+.close:hover {
+  color: #ff4444;
+}
+
+.modal-content h2 {
+  color: #00d9ff;
+  margin-top: 0;
+  text-align: left;
+}
+
+.modal-content p {
+  color: #b0b0b0;
+  font-size: 1.1rem;
+  line-height: 1.8;
+  margin-top: 1.5rem;
+}
+
+/* RESPONSIVE DESIGN - Mobile and Tablet */
+@media (max-width: 768px) {
+  .nav-menu {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .hero h1 {
+    font-size: 2.5rem;
+  }
+  
+  .hero p {
+    font-size: 1.2rem;
+  }
+  
+  h2 {
+    font-size: 2rem;
+  }
+  
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .modal-content {
+    width: 95%;
+    padding: 2rem;
+    margin: 10% auto;
+  }
+}
+/* SOCIAL MEDIA LINKS */
+.social-links {
+  display: flex;
+  gap: 1.5rem;
+  margin-top: 1rem;
+  flex-wrap: wrap;
+}
+
+.social-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: #2a2a2a;
+  padding: 0.8rem 1.5rem;
+  border-radius: 8px;
+  color: #00d9ff;
+  text-decoration: none;
+  font-size: 1.1rem;
+  font-weight: 500;
+  border: 2px solid transparent;
+  transition: all 0.3s;
+}
+
+.social-link:hover {
+  background-color: #008a9e;
+  color: #e0e0e0;
+  border-color: #008a9e;
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(0, 138, 158, 0.2);
+}
+
+.social-icon {
+  font-size: 1.3rem;
+}
+
+/* LARGE MODALS FOR EMBEDDED CONTENT */
+.modal-large {
+  max-width: 1000px;
+  width: 90%;
+}
+
+/* EMBED CONTAINER - For Power BI and Tableau */
+.embed-container {
+  position: relative;
+  width: 100%;
+  height: 600px;
+  margin: 2rem 0;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 2px solid #2a2a2a;
+  background-color: #0a0a0a;
+}
+
+.embed-container iframe,
+.embed-container div {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+/* PROJECT IMAGES - For Excel and PDF screenshots */
+.project-images {
+  margin: 2rem 0;
+}
+
+.project-images img {
+  width: 100%;
+  border-radius: 8px;
+  border: 2px solid #2a2a2a;
+  margin: 1rem 0;
+  transition: transform 0.3s, box-shadow 0.3s;
+  cursor: pointer;
+}
+
+.project-images img:hover {
+  transform: scale(1.02);
+  box-shadow: 0 8px 25px rgba(0, 217, 255, 0.3);
+  border-color: #00d9ff;
+}
+
+/* DOWNLOAD BUTTONS */
+.download-btn {
+  display: inline-block;
+  background-color: #00d9ff;
+  color: #0a0a0a;
+  padding: 1rem 2rem;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1rem;
+  transition: all 0.3s;
+  border: 2px solid #00d9ff;
+  text-align: center;
+}
+
+.download-btn:hover {
+  background-color: #008a9e;
+  border-color: #008a9e;
+  color: #e0e0e0;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 217, 255, 0.3);
+}
+
+/* LISTS IN MODALS */
+.modal-content ul {
+  margin: 1rem 0;
+  padding-left: 1.5rem;
+}
+
+.modal-content ul li {
+  margin: 0.5rem 0;
+  line-height: 1.8;
+}
+
+/* RESPONSIVE - Mobile adjustments for embeds */
+@media (max-width: 768px) {
+  </style>
+</head>
+<body>
+  
+ <!-- NAVIGATION BAR - Fixed at top -->
+<nav class="navbar">
+  <div class="nav-container">
+    <a href="#home" class="nav-logo">Shekhar Suman</a> <!-- REPLACE: Put your actual name here -->
+    <ul class="nav-menu">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- HERO SECTION - Full screen intro -->
+<section id="home" class="hero">
+  <div class="hero-overlay">
+    <h1>SHEKHAR SUMAN</h1> <!-- REPLACE: Put your actual name -->
+    <p>Will update</p> <!-- REPLACE: e.g., "Web Developer" or "Graphic Designer" -->
+  </div>
+</section>
+
+<!-- ABOUT ME SECTION -->
+<section id="about" class="about">
+  <div class="container">
+    <h2>About Me</h2>
+    
+    <div class="about-content">
+      <h3>Hometown</h3>
+      <p>I was born and brought up in Muzaffarpur, a lively town in north Bihar lovingly known as the Land of Litchis. The world-famous Shahi Litchi it’s in the air, in the people, and in the memories it gives you. 
+<p>The Garibnath Temple, often called the Deoghar of Bihar, brings the whole town together in faith and celebration.</p>
+
+<p>Muzaffarpur isn’t just my hometown—it’s an emotion. No matter where life takes me, a part of me will always belong to this place</p>
+  
+</p> <!-- REPLACE: Add your hometown info -->
+      
+      <h3>Education</h3>
+      <p>
+<br>I began my schooling at DAV Public School, Muzaffarpur till class 10th.</br>
+  <br>Completed my 12th from Dolphin Public School, Muzaffarpur.</br>
+
+<br>I pursued my B.Tech from the National Institute of Technology (NIT), Jamshedpur. My years there helped me think critically, collaborate effectively, and manage time efficiently. Peers there enabled me to think one step above. I made few good friends and memories.</br>
+
+<br>Currently, I'm pursuing my MBA in Business Analytics from the Indian Institute of Management (IIM), Ranchi. Learning about business, networking with people, and preparing myself to make meaningful contributions at the intersection of business and technology.</br>
+  
+</p> <!-- REPLACE: Add your education -->
+      
+      <h3>Interests/Hobbies</h3>
+      <p>
+       <p> These days I am learning about learning about Artificial Intelligence, how it works and what are its impacts on Business.</p>
+        <p>cricket and badminton have been a big part of my routine</p>
+         <p> Interest in geopolitics</p>
+<p>  I enjoy reading books- More of Non-fiction </p>
+        </p> <!-- REPLACE: Add your interests -->
+      
+      
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS SECTION -->
+<section id="projects" class="projects">
+  <div class="container">
+    <h2>My Projects</h2>
+    
+    <div class="projects-grid">
+      
+     <!-- PROJECT CARD 1 - POWER BI -->
+      <div class="project-card">
+        <h3>Power BI Dashboard</h3> <!-- REPLACE: Add your actual project name -->
+        <p>Interactive business intelligence dashboard showcasing key metrics and insights.</p> <!-- REPLACE: Add your description -->
+        <button class="btn-details" onclick="openModal('modal1')">View Interactive Dashboard</button>
+      </div>
+      
+      <!-- PROJECT CARD 2 - TABLEAU -->
+      <div class="project-card">
+        <h3>Tableau Visualization</h3> <!-- REPLACE: Add your actual project name -->
+        <p>Data visualization project demonstrating analytical and storytelling skills.</p> <!-- REPLACE: Add your description -->
+        <button class="btn-details" onclick="openModal('modal2')">View Interactive Dashboard</button>
+      </div>
+      
+      <!-- PROJECT CARD 3 - EXCEL DASHBOARD -->
+      <div class="project-card">
+        <h3>Excel Dashboard</h3> <!-- REPLACE: Add your actual project name -->
+        <p>Advanced Excel dashboard with dynamic charts and data analysis.</p> <!-- REPLACE: Add your description -->
+        <button class="btn-details" onclick="openModal('modal3')">View Details & Download</button>
+      </div>
+      
+      <!-- PROJECT CARD 4 - PDF MARKET RESEARCH -->
+      <div class="project-card">
+        <h3>Market Research Report</h3> <!-- REPLACE: Add your actual project name -->
+        <p>Comprehensive market analysis report with insights and recommendations.</p> <!-- REPLACE: Add your description -->
+        <button class="btn-details" onclick="openModal('modal4')">View Report</button>
+      </div>
+      
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT SECTION -->
+<section id="contact" class="contact">
+  <div class="container">
+    <h2>Contact Me</h2>
+    
+    <div class="contact-info">
+      <h3>Email Addresses</h3>
+      <p><a href="mailto:shekhar.sumn22@gmail.com">shekharsumn22@gmail.com</a></p> <!-- REPLACE: Your email -->
+      <p><a href="mailto:shekhar.suman25b@iimranchi.ac.in">shekhar.suman25b@iimranchi.ac.in</a></p> <!-- REPLACE: Another email if you have one -->
+      
+      
+      
+      <h3>Phone Numbers</h3>
+      <p><a href="tel:+919818036539">+919818036539</a></p> <!-- REPLACE: Your phone number -->
+      <h3>Social Media</h3>
+      <div class="social-links">
+        <a href="https://www.linkedin.com/in/shekhar-suman-64bb871b9/" target="_blank" class="social-link">
+          <span class="social-icon">🔗</span> LinkedIn
+        </a>
+        <!-- REPLACE: Change 'your-profile' to your actual LinkedIn username -->
+        
+        <a href="https://x.com/03shekhar27" target="_blank" class="social-link">
+          <span class="social-icon"> X </span> Twitter
+        </a>
+        <!-- REPLACE: Change 'your-username' to your actual Twitter handle -->
+      </div>
+      
+    </div>
+  </div>
+</section>
+
+<!-- MODAL POP-UPS FOR PROJECT DETAILS -->
+
+<!-- Modal 1 - POWER BI -->
+<div id="modal1" class="modal">
+  <div class="modal-content modal-large">
+    <span class="close" onclick="closeModal('modal1')">&times;</span>
+    <h2>Power BI Dashboard Project</h2> <!-- REPLACE: Your project name -->
+    
+    <a href="https://tinyurl.com/23hsk4mt" target="_blank" class="download-btn">
+      📥 View Full Dashboard
+    </a>
+    <p>Brief description of what this dashboard shows and the business problem it solves.</p> <!-- REPLACE: Add context -->
+    
+    <div class="project-images">
+      <img src="https://tinyurl.com/mwpk6ueh" alt="Tableau Dashboard Overview" style="width: 100%; border-radius: 8px; margin: 1rem 0;">
+       </div>
+    
+    <div class="project-images">
+      <img src="https://tinyurl.com/jnd7y7j4" alt="Tableau Dashboard Overview" style="width: 100%; border-radius: 8px; margin: 1rem 0;">
+       </div>
+    
+    <div class="project-images">
+      <img src="https://tinyurl.com/2ps3jw57" alt="Tableau Dashboard Overview" style="width: 100%; border-radius: 8px; margin: 1rem 0;">
+       </div>
+    
+    
+     <p style="margin-top: 1.5rem;"><strong>Tools Used:</strong> Power BI, Excel</p> <!-- REPLACE: Your tools -->
+    
+    <p style="margin-top: 1.5rem;"><strong>Key Insights:</strong></p>
+    <ul style="color: #b0b0b0; margin-left: 1.5rem;">
+      <li>Add your key finding 1</li> <!-- REPLACE: Your insights -->
+      <li>Add your key finding 2</li>
+      <li>Add your key finding 3</li>
+    </ul>
+  </div>
+</div>
+
+<!-- Modal 2 - TABLEAU -->
+<div id="modal2" class="modal">
+  <div class="modal-content modal-large">
+    <span class="close" onclick="closeModal('modal2')">&times;</span>
+    <h2>Tableau Visualization Project</h2> <!-- REPLACE: Your project name -->
+    
+    <a href="https://tinyurl.com/3kxa69xa" target="_blank" class="download-btn">
+      📥 View Full Dashboard
+    </a>
+    <p>Description of your Tableau project and what story it tells through data.</p> <!-- REPLACE: Add context -->
+    
+     <div class="project-images">
+      <img src="https://tinyurl.com/3cj2n8zk" alt="Tableau Dashboard Overview" style="width: 100%; border-radius: 8px; margin: 1rem 0;">
+       </div>
+    
+   
+    
+    <p style="margin-top: 1.5rem;"><strong>Tools Used:</strong> Tableau, Excel</p> <!-- REPLACE: Your tools -->
+    <p><strong>Key Insights:</strong></p>
+    <ul style="color: #b0b0b0; margin-left: 1.5rem;">
+      <li>Add your key finding 1</li> <!-- REPLACE: Your insights -->
+      <li>Add your key finding 2</li>
+      <li>Add your key finding 3</li>
+    </ul>
+  </div>
+</div>
+
+
+
+<!-- Modal 3 - EXCEL DASHBOARD -->
+<div id="modal3" class="modal">
+  <div class="modal-content modal-large">
+    <span class="close" onclick="closeModal('modal3')">&times;</span>
+    <h2>Excel Dashboard Project</h2> <!-- REPLACE: Your project name -->
+    <a href="https://tinyurl.com/5duvebnx" target="_blank" class="download-btn">
+      📥 Download Full Dashboard
+    </a>
+    <p>Description of your Excel dashboard and the analysis it provides.</p> <!-- REPLACE: Add context -->
+    
+    <!-- Dashboard Screenshots -->
+    <div class="project-images">
+      <img src="https://tinyurl.com/yc3pwwvr" alt="Excel Dashboard Overview" style="width: 100%; border-radius: 8px; margin: 1rem 0;">
+      <!-- REPLACE: Paste your first Imgur link above -->
+      
+      <img src="https://tinyurl.com/3panuhd7" alt="Excel Dashboard Detail" style="width: 100%; border-radius: 8px; margin: 1rem 0;">
+      <!-- REPLACE: Paste your second Imgur link above -->
+    </div>
+    
+    <p style="margin-top: 1.5rem;"><strong>Features:</strong></p>
+    <ul style="color: #b0b0b0; margin-left: 1.5rem;">
+      <li>Dynamic charts and pivot tables</li> <!-- REPLACE: Your features -->
+      <li>Automated data analysis</li>
+      <li>Interactive filters and slicers</li>
+    </ul>
+    
+    
+    
+  </div>
+</div>
+
+<!-- Modal 4 - PDF MARKET RESEARCH -->
+<div id="modal4" class="modal">
+  <div class="modal-content modal-large">
+    <span class="close" onclick="closeModal('modal4')">&times;</span>
+    <h2>Market Research Report</h2> <!-- REPLACE: Your project name -->
+    
+      <a href="https://tinyurl.com/5n96h6rf" target="_blank" class="download-btn">
+         View PDF
+      </a>
+    
+    <p>Overview of your market research findings and methodology.</p> <!-- REPLACE: Add context -->
+    
+    <!-- PDF Preview Image -->
+    <div class="project-images">
+      <img src="https://tinyurl.com/bkxu7tw9" alt="Market Research Report Preview" style="width: 100%; border-radius: 8px; margin: 1rem 0;">
+      <!-- REPLACE: Paste your PDF preview Imgur link above -->
+    </div>
+    
+    <div class="project-images">
+      <img src="https://tinyurl.com/2vz59xuc" alt="Market Research Report Preview" style="width: 100%; border-radius: 8px; margin: 1rem 0;">
+      <!-- REPLACE: Paste your PDF preview Imgur link above -->
+    </div>
+    
+    <div class="project-images">
+      <img src="https://tinyurl.com/4teb69f5" alt="Market Research Report Preview" style="width: 100%; border-radius: 8px; margin: 1rem 0;">
+      <!-- REPLACE: Paste your PDF preview Imgur link above -->
+    </div>
+    
+    <div class="project-images">
+      <img src="https://tinyurl.com/3ctjmv9s" alt="Market Research Report Preview" style="width: 100%; border-radius: 8px; margin: 1rem 0;">
+      <!-- REPLACE: Paste your PDF preview Imgur link above -->
+    </div>
+    
+   
+    
+    <p style="margin-top: 1.5rem;"><strong>Report Highlights:</strong></p>
+    <ul style="color: #b0b0b0; margin-left: 1.5rem;">
+      <li>Market size and growth analysis</li> <!-- REPLACE: Your highlights -->
+      <li>Competitive landscape overview</li>
+      <li>Strategic recommendations</li>
+    </ul>
+    
+    
+     
+    </div>
+    <!-- REPLACE: Paste your Google Drive links above -->
+  </div>
+</div>
+  
+  <script>
+   // FUNCTION TO OPEN MODAL POP-UPS
+function openModal(modalId) {
+  // Find the modal by its ID and display it
+  const modal = document.getElementById(modalId);
+  if (modal) {
+    modal.style.display = "block";
+    // Prevent body from scrolling when modal is open
+    document.body.style.overflow = "hidden";
+  }
+}
+
+// FUNCTION TO CLOSE MODAL POP-UPS
+function closeModal(modalId) {
+  // Find the modal by its ID and hide it
+  const modal = document.getElementById(modalId);
+  if (modal) {
+    modal.style.display = "none";
+    // Re-enable body scrolling
+    document.body.style.overflow = "auto";
+  }
+}
+
+// CLOSE MODAL WHEN CLICKING OUTSIDE THE CONTENT BOX
+window.onclick = function(event) {
+  // Get all modals on the page
+  const modals = document.getElementsByClassName('modal');
+  
+  // Check if the click was on a modal background (not the content)
+  for (let i = 0; i < modals.length; i++) {
+    if (event.target === modals[i]) {
+      modals[i].style.display = "none";
+      document.body.style.overflow = "auto";
+    }
+  }
+}
+
+// CLOSE MODAL WITH ESCAPE KEY
+document.addEventListener('keydown', function(event) {
+  if (event.key === "Escape") {
+    const modals = document.getElementsByClassName('modal');
+    for (let i = 0; i < modals.length; i++) {
+      if (modals[i].style.display === "block") {
+        modals[i].style.display = "none";
+        document.body.style.overflow = "auto";
+      }
+    }
+  }
+});
+  </script>
+</body>
+</html>
+```
+
